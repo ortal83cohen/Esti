@@ -1,0 +1,49 @@
+
+apply plugin: 'com.android.instantapp'
+
+//android {
+//
+//    compileSdkVersion rootProject.ext.compileSdkVersion
+//    buildToolsVersion rootProject.ext.buildToolsVersion
+//
+//    defaultConfig {
+//        targetSdkVersion rootProject.ext.targetSdkVersion
+//        minSdkVersion rootProject.minSdkVersion
+//        versionCode rootProject.ext.versionCode
+//        versionName rootProject.ext.versionName
+//        applicationId rootProject.ext.applicationId
+//    }
+//
+//    signingConfigs {
+//        config {
+//            keyAlias 'key0'
+//            keyPassword 'p262prw6'
+//            storeFile file('C:/Users/Ortal Cohen/Documents/ScrumEsti/key.jks')
+//            storePassword 'p262prw6'
+//        }
+//    }
+//
+//    packagingOptions {
+//        exclude 'META-INF/*.*'
+//        exclude '**/*.txt'
+//        exclude '**/*.xml'
+//        exclude '**/*.png'
+//    }
+//
+//    buildTypes {
+//        release {
+//            minifyEnabled true
+//        }
+//        debug {
+//            minifyEnabled false
+//        }
+//    }
+//
+//
+//}
+
+dependencies {
+    implementation project(':feature')
+}
+
+apply plugin: 'com.google.gms.google-services'

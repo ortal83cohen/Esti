@@ -1,0 +1,49 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    ext.kotlin_version = '1.2.21'
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'com.google.gms:google-services:3.2.0'
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+ext {
+    // APP version
+    versionCode = 4
+    versionName = "0.1.0"
+    applicationId = "com.esti.app"
+    //Android config
+    compileSdkVersion = 27
+    targetSdkVersion = 27
+    minSdkVersion = 21
+    buildToolsVersion = "27.0.3"
+    // App dependencies
+    supportLibraryVersion = '27.0.2'
+    googlePlayServices = '11.4.2'
+    runnerVersion = '1.0.1'
+    espressoVersion = '3.0.1'
+    daggerVersion = '2.14.1'
+    dexMakerVersion = '1.2'
+    retrofitVersion = '2.3.0'
+    adjustVersion = '4.12.0'
+    butterKnifeVersion = '9.0.0-SNAPSHOT'
+    lombokVersion = '1.16.18'
+    systemProperties = System.properties
+}
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

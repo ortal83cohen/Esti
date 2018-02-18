@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:fitsSystemWindows="true"
+  tools:context="com.esti.app.scrumesti.feature.MainActivity">
+
+  <android.support.design.widget.AppBarLayout
+    android:layout_width="match_parent"
+    android:elevation="0dp"       android:background="@color/transparent"
+    android:layout_height="wrap_content"
+    android:fitsSystemWindows="true"
+    >
+
+
+  </android.support.design.widget.AppBarLayout>
+
+  <android.support.v7.widget.Toolbar
+    android:id="@+id/toolbar"
+    android:background="@color/transparent"
+    android:elevation="0dp"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:fitsSystemWindows="true"
+    app:popupTheme="@style/AppTheme.PopupOverlay"/>
+
+  <include layout="@layout/content_main"/>
+  <include layout="@layout/top_layout"/>
+
+</FrameLayout>

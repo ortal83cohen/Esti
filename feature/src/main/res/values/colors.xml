@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <color name="colorPrimary">#3F51B5</color>
+  <color name="colorPrimaryDark">#303F9F</color>
+  <color name="colorAccent">#FF4081</color>
+  <color name="black">@android:color/black</color>
+  <color name="transparent">@android:color/transparent</color>
+  <color name="gray">@android:color/darker_gray</color>
+  <color name="white">@android:color/white</color>
+
+  <color name="light_grey_semi_transparent">#80313435</color>
+  <color name="app_background">#D0E1FF</color>
+  <color name="button">#CFECCE</color>
+  <color name="button_pressed">#77BDB5</color>
+  <color name="colorDependency">#0F6489</color>
+  <color name="colorClarity">#6A5D93</color>
+  <color name="colorComplexity">#AA84A9</color>
+  <color name="button_disable">#d3d3d3</color>
+  <color name="card_front">#DDE1E4</color>
+  <color name="card_back">#D6D6D4</color>
+  <color name="oval_total">#4E9DBE</color>
+
+</resources>
+

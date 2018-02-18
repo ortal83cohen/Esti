@@ -1,0 +1,57 @@
+<resources>
+  <string name="app_name">Scrum Esti</string>
+  <string name="action_settings">Settings</string>
+  <string name="action_reset">Reset</string>
+  <string name="action_share">Add scrummers</string>
+  <string name="action_edit">Change scrummer/team</string>
+  <string name="team_name">Team name</string>
+
+  <!-- TODO: Remove or change this placeholder text -->
+  <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+  <string name="title_time_preset_2">2</string>
+  <string name="title_time_preset_0">0</string>
+
+  <string name="unit_seconds">Points</string>
+
+  <string name="title_time_preset_8">8</string>
+
+  <string name="title_time_preset_4">4</string>
+
+  <string name="title_settings_set_duration">Set duration</string>
+  <string name="title_time_preset_1">1</string>
+  <string name="title_time_preset_n">need to brake</string>
+  <string name="title_time_preset_13">13</string>
+  <string name="share_using">Add Scrummers using ?</string>
+  <string name="complexity">Complexity</string>
+  <string name="clarity">Unclarity</string>
+  <string name="dependency">Dependency</string>
+  <string name="welcome_text">"<![CDATA[
+   <h1> Welcome to Esti</h1>
+   <h4>The story points estimation tool. </h4>
+   In order to add more members to this team:<br>
+   <b>1.</b> Click the top right three dots menu button<br>
+   <b>2.</b> Select 'Add scrummers'<br>
+   <b>3.</b> Select your invitation method and ask scrummers to join the team<br>
+   ]]> "</string>
+  <string name="name">Scrummer name</string>
+  <string name="action_how_to">How to</string>
+  <string name="how_to_text">"<![CDATA[
+       <h1> How and Why use Esti</h1>
+
+       When working in an agile team, estimating story points might be a difficult task for team members.
+       Combining the complexity, obscurity and dependencies to a single number is no easy task, not even for skilled scrummers.
+       That's why we created Esti, a tool for teams ranging from complete beginners to expert scrummers.<br>
+
+       <h2>How to use Esti?</h2>
+
+       Using Esti is simple, and can be done in different ways. Here's our suggestion for using Esti as part of your planning/estimation meeting.<br>
+
+       1. The scrum master opens a group on Esti and adds all the team members.<br>
+       2. The scrum master presents the story and gives a short description of the task.<br>
+       3. Each scrummer marks on Esti the level of complexity, unclarity and dependecy he feels fit for the story presented.<br>
+       4. Once all scrummers have filled in their story estimation measurements, Esti will present the final calculated story points for this task.<br>
+        ]]> "</string>
+  <string name="feedback">Give us feedback</string>
+</resources>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+  package="com.esti.app.scrumesti.feature">
+
+  <application>
+    <activity
+      android:label="@string/app_name"
+      android:name=".MainActivity"
+      android:screenOrientation="portrait"
+      android:theme="@style/AppTheme.NoActionBar">
+      <intent-filter android:order="1">
+        <action android:name="android.intent.action.VIEW"/>
+
+        <category android:name="android.intent.category.BROWSABLE"/>
+        <category android:name="android.intent.category.DEFAULT"/>
+
+        <data
+          android:host="app.esti.com"
+          android:pathPattern="/.*"
+          android:scheme="https"/>
+        <data
+          android:host="app.esti.com"
+          android:pathPattern="/.*"
+          android:scheme="http"/>
+      </intent-filter>
+      <intent-filter android:autoVerify="true">
+        <action android:name="android.intent.action.VIEW"/>
+
+        <category android:name="android.intent.category.BROWSABLE"/>
+        <category android:name="android.intent.category.DEFAULT"/>
+
+        <data
+          android:host="app.esti.com"
+          android:path="/instant"
+          android:scheme="http"/>
+        <data
+          android:host="app.esti.com"
+          android:path="/instant"
+          android:scheme="https"/>
+      </intent-filter>
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN"/>
+
+        <category android:name="android.intent.category.LAUNCHER"/>
+      </intent-filter>
+    </activity>
+  </application>
+
+</manifest>
