@@ -5,10 +5,6 @@ import android.content.SharedPreferences;
 import android.support.annotation.Nullable;
 import java.util.Set;
 
-/**
- * Created by AhmedsMacbook on 31/03/2017.
- */
-
 public abstract class BaseObscuredSharedPreferences implements SharedPreferences {
 
 	protected static final String UTF8 = "utf-8";

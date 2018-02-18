@@ -49,7 +49,7 @@ public class TeamDetailsFragment extends Fragment {
 
 		viewModel = ViewModelProviders.of(getActivity()).get(DataViewModel.class);
 
-		name = view.findViewById(R.id.name);
+		name = (EditText)view.findViewById(R.id.name);
 		teamName = view.findViewById(R.id.groupName);
 		doneButton = view.findViewById(R.id.doneButton);
 
@@ -68,7 +68,7 @@ public class TeamDetailsFragment extends Fragment {
 				viewModel.setGroupAndUser(teamName.getText().toString(), name.getText().toString());
 				((MainActivity) getActivity()).removeGroupDetailsFragment();
 
-				if (!oldName.equals(name.getText().toString()) || !oldTeam.equals(teamName.getText().toString())) {
+				if (oldName!=null && !oldName.equals(name.getText().toString()) || oldTeam!=null && !oldTeam.equals(teamName.getText().toString())) {
 					viewModel.removeUserFromTeam(oldName, oldTeam);
 				}
 			}

@@ -54,6 +54,8 @@ dependencies {
     compile "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
     api "com.android.support:design:$rootProject.supportLibraryVersion"
 
+    compile 'com.google.android.instantapps:instantapps:1.1.0'
+
     api "com.android.support.constraint:constraint-layout:1.0.2"
     compile "android.arch.lifecycle:extensions:1.1.0"
     implementation "android.arch.lifecycle:common-java8:1.1.0"

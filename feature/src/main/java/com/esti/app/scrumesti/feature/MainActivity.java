@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 import com.esti.app.R;
+import com.esti.app.scrumesti.feature.services.FirebaseHelper;
 import com.esti.app.scrumesti.feature.utils.Strings;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.dynamiclinks.DynamicLink;
@@ -44,7 +45,7 @@ public class MainActivity extends BaseActivity {
 				Toast.makeText(getBaseContext(), string, Toast.LENGTH_SHORT).show();
 			}
 		});
-
+		FirebaseHelper.addListeners(this,viewModel);
 		Uri uriData = getIntent().getData();
 		if (uriData != null) {
 			deepLink(uriData);
