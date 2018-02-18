@@ -98,7 +98,11 @@ public class ResultsFragment extends Fragment {
 			}
 
 			if (userHwoVoted == numberOfUsers) {
-				total.setText(ScrumRules.scrumerSum(sumCOMPLEXITY / numberOfUsers, sumCLARITY / numberOfUsers, sumDEPENDENCY / numberOfUsers).toString());
+				if (numberOfUsers == 0) {
+					total.setText("?");
+				} else {
+					total.setText(ScrumRules.scrumerSum(sumCOMPLEXITY / numberOfUsers, sumCLARITY / numberOfUsers, sumDEPENDENCY / numberOfUsers).toString());
+				}
 			} else {
 				total.setText("?");
 			}

@@ -7,7 +7,6 @@ import android.arch.lifecycle.Transformations;
 import android.arch.lifecycle.ViewModel;
 import android.os.Handler;
 import com.esti.app.scrumesti.feature.services.ObscuredSharedPreferences;
-import com.esti.app.scrumesti.feature.services.ScrumRules;
 import com.esti.app.scrumesti.feature.utils.Strings;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -186,7 +185,7 @@ public class DataViewModel extends ViewModel {
 		return user;
 	}
 
-	public MutableLiveData<String> getGroup() {
+	public MutableLiveData<String> getTeam() {
 		Timber.tag(DATA_VIEW_MODEL).e(getMethodName());
 		return group;
 	}
@@ -197,7 +196,7 @@ public class DataViewModel extends ViewModel {
 			selected.remove(s);
 		} else {
 			selected.put(s, i);
-			myRef.child(getGroup().getValue()).child(USERS).child(getUser().getValue()).setValue(selected);
+			myRef.child(getTeam().getValue()).child(USERS).child(getUser().getValue()).setValue(selected);
 		}
 	}
 
@@ -227,7 +226,7 @@ public class DataViewModel extends ViewModel {
 
 	public void resetGroup() {
 		Timber.tag(DATA_VIEW_MODEL).e(getMethodName());
-		if (!Strings.isNullOrEmpty(getGroup().getValue())) {
+		if (!Strings.isNullOrEmpty(getTeam().getValue())) {
 			myRef.child(group.getValue()).child(USERS).removeValue();
 		}
 	}
@@ -275,5 +274,9 @@ public class DataViewModel extends ViewModel {
 
 	public void setNextEsti() {
 		myRef.child(group.getValue()).child(NEXT_ESTI).setValue(NEXT_ESTI_STATUS_SET);
+	}
+
+	public void removeUserFromTeam(String oldName, String oldTeam) {
+		myRef.child(oldTeam).child(USERS).child(oldName).removeValue();
 	}
 }

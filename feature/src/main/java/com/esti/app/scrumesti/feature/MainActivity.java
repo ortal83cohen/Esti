@@ -28,7 +28,7 @@ public class MainActivity extends BaseActivity {
 
 	android.support.v7.widget.Toolbar toolbar;
 	private DataViewModel viewModel;
-	private GroupDetailsFragment groupDetailsFragment = null;
+	private TeamDetailsFragment teamDetailsFragment = null;
 
 	@Override protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -107,11 +107,11 @@ public class MainActivity extends BaseActivity {
 		}
 		if (item.getTitle().equals(getString(R.string.action_share))) {
 			String newGroupName;
-			if (Strings.isNullOrEmpty(viewModel.getGroup().getValue())) {
+			if (Strings.isNullOrEmpty(viewModel.getTeam().getValue())) {
 				Random r = new Random();
 				viewModel.setGroup(newGroupName = String.valueOf(r.nextInt()));
 			} else {
-				newGroupName = viewModel.getGroup().getValue();
+				newGroupName = viewModel.getTeam().getValue();
 			}
 			createLink(newGroupName);
 
@@ -144,10 +144,10 @@ public class MainActivity extends BaseActivity {
 		FragmentManager fragmentManager = getSupportFragmentManager();
 		FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 		fragmentTransaction.setCustomAnimations(R.animator.slow_fade_in, 0);
-		if (groupDetailsFragment == null) {
-			groupDetailsFragment = GroupDetailsFragment.newInstance();
+		if (teamDetailsFragment == null) {
+			teamDetailsFragment = TeamDetailsFragment.newInstance();
 		}
-		fragmentTransaction.replace(R.id.container_fragment, groupDetailsFragment, "GroupDetailsFragment");
+		fragmentTransaction.replace(R.id.container_fragment, teamDetailsFragment, "TeamDetailsFragment");
 		fragmentTransaction.commit();
 	}
 
@@ -157,12 +157,12 @@ public class MainActivity extends BaseActivity {
 		FragmentManager fragmentManager = getSupportFragmentManager();
 		FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 		fragmentTransaction.setCustomAnimations(R.animator.slow_fade_in, 0);
-		fragmentTransaction.remove(groupDetailsFragment);
+		fragmentTransaction.remove(teamDetailsFragment);
 		fragmentTransaction.commit();
 	}
 
 	@Override public void onBackPressed() {
-		if (groupDetailsFragment != null && groupDetailsFragment.isAdded() && viewModel.isUserAndGroupExist()) {
+		if (teamDetailsFragment != null && teamDetailsFragment.isAdded() && viewModel.isUserAndGroupExist()) {
 			removeGroupDetailsFragment();
 			return;
 		}

@@ -8,22 +8,23 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import com.esti.app.R;
 import com.esti.app.scrumesti.feature.utils.Strings;
 
-public class GroupDetailsFragment extends Fragment {
+public class TeamDetailsFragment extends Fragment {
 
 	private DataViewModel viewModel;
 	private EditText name;
-	private EditText groupName;
+	private EditText teamName;
 	private Button doneButton;
+	private String oldName;
+	private String oldTeam;
 
-	public static GroupDetailsFragment newInstance() {
-		GroupDetailsFragment fragment = new GroupDetailsFragment();
+	public static TeamDetailsFragment newInstance() {
+		TeamDetailsFragment fragment = new TeamDetailsFragment();
 		Bundle args = new Bundle();
 		fragment.setArguments(args);
 		return fragment;
@@ -34,7 +35,7 @@ public class GroupDetailsFragment extends Fragment {
 	}
 
 	@Override public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		return inflater.inflate(R.layout.fragment_group_details, container, false);
+		return inflater.inflate(R.layout.fragment_team_details, container, false);
 	}
 
 
@@ -49,42 +50,42 @@ public class GroupDetailsFragment extends Fragment {
 		viewModel = ViewModelProviders.of(getActivity()).get(DataViewModel.class);
 
 		name = view.findViewById(R.id.name);
-		groupName = view.findViewById(R.id.groupName);
+		teamName = view.findViewById(R.id.groupName);
 		doneButton = view.findViewById(R.id.doneButton);
 
 		if (viewModel.getUser().getValue() != null) {
 			name.setText(viewModel.getUser().getValue());
+			oldName = viewModel.getUser().getValue();
 		}
 
-		if (viewModel.getGroup().getValue() != null) {
-			groupName.setText(viewModel.getGroup().getValue());
+		if (viewModel.getTeam().getValue() != null) {
+			teamName.setText(viewModel.getTeam().getValue());
+			oldTeam = viewModel.getTeam().getValue();
 		}
 
-		doneButton.setOnClickListener(new OnClickListener() {
-			@Override public void onClick(View view) {
-				if (!Strings.isNullOrEmpty(groupName.getText().toString()) && !Strings.isNullOrEmpty(name.getText().toString())) {
-					viewModel.setGroupAndUser(groupName.getText().toString(), name.getText().toString());
-					((MainActivity) getActivity()).removeGroupDetailsFragment();
+		doneButton.setOnClickListener(view1 -> {
+			if (!Strings.isNullOrEmpty(teamName.getText().toString()) && !Strings.isNullOrEmpty(name.getText().toString())) {
+				viewModel.setGroupAndUser(teamName.getText().toString(), name.getText().toString());
+				((MainActivity) getActivity()).removeGroupDetailsFragment();
+
+				if (!oldName.equals(name.getText().toString()) || !oldTeam.equals(teamName.getText().toString())) {
+					viewModel.removeUserFromTeam(oldName, oldTeam);
 				}
 			}
 		});
 
-		name.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-			@Override public void onFocusChange(View view, boolean hasFocus) {
-				if (hasFocus) {
-					name.setHint("Everybody should recognize you");
-				} else {
-					name.setHint("");
-				}
+		name.setOnFocusChangeListener((view12, hasFocus) -> {
+			if (hasFocus) {
+				name.setHint("Everybody should recognize you");
+			} else {
+				name.setHint("");
 			}
 		});
-		groupName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-			@Override public void onFocusChange(View view, boolean hasFocus) {
-				if (hasFocus) {
-					groupName.setHint("Try something sort and easy");
-				} else {
-					groupName.setHint("");
-				}
+		teamName.setOnFocusChangeListener((view13, hasFocus) -> {
+			if (hasFocus) {
+				teamName.setHint("Try something unique, short and easy");
+			} else {
+				teamName.setHint("");
 			}
 		});
 	}
