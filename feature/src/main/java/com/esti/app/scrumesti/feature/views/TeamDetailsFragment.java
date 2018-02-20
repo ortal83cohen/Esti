@@ -1,4 +1,4 @@
-package com.esti.app.scrumesti.feature;
+package com.esti.app.scrumesti.feature.views;
 
 
 import android.arch.lifecycle.ViewModelProviders;
@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import com.esti.app.R;
+import com.esti.app.scrumesti.feature.view_models.DataViewModel;
+import com.esti.app.scrumesti.feature.MainActivity;
 import com.esti.app.scrumesti.feature.utils.Strings;
 
 public class TeamDetailsFragment extends Fragment {

@@ -7,4 +7,16 @@
     <attr format="color" name="presetButtonPressedTextColor"/>
     <attr format="color" name="presetButtonUnitTextColor"/>
   </declare-styleable>
+
+  <declare-styleable name="PresetRadioGroup">
+    <attr format="reference" name="presetRadioCheckedId"/>
+  </declare-styleable>
+
+  <declare-styleable name="RangeSeekBar" >
+    <attr  format="integer" name="absoluteMinValue"/>
+    <attr  format="integer" name="absoluteMaxValue"/>
+    <attr  format="boolean" name="singleThumb"/>
+  </declare-styleable>
+
+
 </resources>

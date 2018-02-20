@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 
+apply plugin: 'com.google.firebase.firebase-perf'
+
 android {
     signingConfigs {
         config {
@@ -39,6 +41,8 @@ android {
 
 dependencies {
     implementation project(':feature')
+    compile 'com.google.firebase:firebase-perf:11.8.0'
+
 }
 
 apply plugin: 'com.google.gms.google-services'

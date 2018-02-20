@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
@@ -15,6 +16,9 @@ import android.widget.Toast;
 import com.esti.app.R;
 import com.esti.app.scrumesti.feature.services.FirebaseHelper;
 import com.esti.app.scrumesti.feature.utils.Strings;
+import com.esti.app.scrumesti.feature.view_models.DataViewModel;
+import com.esti.app.scrumesti.feature.views.TeamSettingsFragment;
+import com.esti.app.scrumesti.feature.views.TeamDetailsFragment;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.dynamiclinks.DynamicLink;
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
@@ -30,6 +34,7 @@ public class MainActivity extends BaseActivity {
 	android.support.v7.widget.Toolbar toolbar;
 	private DataViewModel viewModel;
 	private TeamDetailsFragment teamDetailsFragment = null;
+	private TeamSettingsFragment teamSettingsFragment = null;
 
 	@Override protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -54,15 +59,15 @@ public class MainActivity extends BaseActivity {
 
 	private void deepLink(Uri uriData) {
 		if (!Strings.isNullOrEmpty(uriData.getPath())) {
-			viewModel.setGroup(uriData.getPath().replace("/", ""));
-			addGroupDetailsFragment();
+			viewModel.setTeam(uriData.getPath().replace("/", ""));
+			addTeamDetailsFragment();
 		}
 	}
 
 	@Override protected void onPostCreate(@Nullable Bundle savedInstanceState) {
 		super.onPostCreate(savedInstanceState);
 		if (!viewModel.isUserAndGroupExist()) {
-			addGroupDetailsFragment();
+			addTeamDetailsFragment();
 		}
 	}
 
@@ -84,33 +89,28 @@ public class MainActivity extends BaseActivity {
 
 	@Override public boolean onOptionsItemSelected(MenuItem item) {
 		if (item.getTitle().equals(getString(R.string.action_settings))) {
-
-		}
-		if (item.getTitle().equals(getString(R.string.feedback))) {
+			addSettingsFragment();
+		} else if (item.getTitle().equals(getString(R.string.feedback))) {
 			Intent send = new Intent(Intent.ACTION_SENDTO);
 			String uriText = "mailto:" + Uri.encode("estiscrum@gmail.com") + "?subject=" + Uri.encode("Esti feedback");
 			Uri uri = Uri.parse(uriText);
 			send.setData(uri);
 			startActivity(Intent.createChooser(send, "Send mail"));
-		}
-		if (item.getTitle().equals(getString(R.string.action_how_to))) {
+		} else if (item.getTitle().equals(getString(R.string.action_how_to))) {
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			builder.setMessage(Html.fromHtml(getString(R.string.how_to_text)));
 			builder.setPositiveButton("OK", null);
 			AlertDialog dialog = builder.create();
 			dialog.show();
-		}
-		if (item.getTitle().equals(getString(R.string.action_edit))) {
-			addGroupDetailsFragment();
-		}
-		if (item.getTitle().equals(getString(R.string.action_reset))) {
+		} else if (item.getTitle().equals(getString(R.string.action_edit))) {
+			addTeamDetailsFragment();
+		} else if (item.getTitle().equals(getString(R.string.action_reset))) {
 			viewModel.resetGroup();
-		}
-		if (item.getTitle().equals(getString(R.string.action_share))) {
+		} else if (item.getTitle().equals(getString(R.string.action_share))) {
 			String newGroupName;
 			if (Strings.isNullOrEmpty(viewModel.getTeam().getValue())) {
 				Random r = new Random();
-				viewModel.setGroup(newGroupName = String.valueOf(r.nextInt()));
+				viewModel.setTeam(newGroupName = String.valueOf(r.nextInt()));
 			} else {
 				newGroupName = viewModel.getTeam().getValue();
 			}
@@ -139,32 +139,57 @@ public class MainActivity extends BaseActivity {
 				});
 	}
 
-	private void addGroupDetailsFragment() {
+	private void addTeamDetailsFragment() {
+		if (teamDetailsFragment == null) {
+			teamDetailsFragment = TeamDetailsFragment.newInstance();
+		}
+		addFragment(teamDetailsFragment);
+	}
+
+	private void addSettingsFragment() {
+		if (teamSettingsFragment == null) {
+			teamSettingsFragment = TeamSettingsFragment.newInstance();
+		}
+		if(viewModel.isUserAndGroupExist()) {
+			addFragment(teamSettingsFragment);
+		}else {
+			Toast.makeText(this,R.string.must_have_team,Toast.LENGTH_LONG).show();
+		}
+	}
+
+	private void addFragment(Fragment fragment) {
 		toolbar.getMenu().setGroupEnabled(R.id.menuOnMain, false);
 
 		FragmentManager fragmentManager = getSupportFragmentManager();
 		FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 		fragmentTransaction.setCustomAnimations(R.animator.slow_fade_in, 0);
-		if (teamDetailsFragment == null) {
-			teamDetailsFragment = TeamDetailsFragment.newInstance();
-		}
-		fragmentTransaction.replace(R.id.container_fragment, teamDetailsFragment, "TeamDetailsFragment");
+		fragmentTransaction.replace(R.id.container_fragment, fragment, "TeamDetailsFragment");
 		fragmentTransaction.commit();
 	}
 
 	public void removeGroupDetailsFragment() {
+		removeFragment(teamDetailsFragment);
+	}
+	public void removeSettingsFragment() {
+		removeFragment(teamSettingsFragment);
+	}
+
+	private void removeFragment(Fragment Fragment) {
 		toolbar.getMenu().setGroupEnabled(R.id.menuOnMain, true);
 
 		FragmentManager fragmentManager = getSupportFragmentManager();
 		FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 		fragmentTransaction.setCustomAnimations(R.animator.slow_fade_in, 0);
-		fragmentTransaction.remove(teamDetailsFragment);
+		fragmentTransaction.remove(Fragment);
 		fragmentTransaction.commit();
 	}
 
 	@Override public void onBackPressed() {
 		if (teamDetailsFragment != null && teamDetailsFragment.isAdded() && viewModel.isUserAndGroupExist()) {
 			removeGroupDetailsFragment();
+			return;
+		}		if (teamSettingsFragment != null && teamSettingsFragment.isAdded() ) {
+			removeSettingsFragment();
 			return;
 		}
 		super.onBackPressed();

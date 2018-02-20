@@ -1,26 +1,34 @@
 package com.esti.app.scrumesti.feature.services;
 
+import com.esti.app.scrumesti.feature.models.Settings;
+
 /**
  * Created by Ortal Cohen on 17/2/2018.
  */
 
 public class ScrumRules {
 
+	static Settings settings = new Settings();
+
+	static public void updateSettings(Settings newSettings) {
+		settings = newSettings;
+	}
 
 	public static Integer numberToFibonacci(int i) {
-		if (i < 10) {
+		int onePart = 13;//settings.getTotalWeight() / 9;
+		if (i < onePart) {
 			return 0;
-		} else if (i < 30) {
+		} else if (i < onePart*2) {
 			return 1;
-		} else if (i < 50) {
+		} else if (i < onePart*3) {
 			return 2;
-		} else if (i < 80) {
+		} else if (i < onePart*4) {
 			return 3;
-		} else if (i < 100) {
+		} else if (i < onePart*5) {
 			return 5;
-		} else if (i < 130) {
+		} else if (i < onePart*6) {
 			return 8;
-		} else if (i < 160) {
+		} else if (i < onePart*7) {
 			return 13;
 		} else {
 			return 21;

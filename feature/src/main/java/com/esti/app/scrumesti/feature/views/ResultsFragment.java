@@ -1,4 +1,4 @@
-package com.esti.app.scrumesti.feature;
+package com.esti.app.scrumesti.feature.views;
 
 
 import android.arch.lifecycle.ViewModelProviders;
@@ -14,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.esti.app.R;
+import com.esti.app.scrumesti.feature.view_models.DataViewModel;
+import com.esti.app.scrumesti.feature.models.User;
 import com.esti.app.scrumesti.feature.services.ScrumRules;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -70,6 +72,7 @@ public class ResultsFragment extends Fragment {
 			usersList.addAll(users);
 			adapter.notifyDataSetChanged();
 		});
+		viewModel.getSettings().observe(getActivity(), ScrumRules::updateSettings);
 		viewModel.getAllVoteDone().observe(getActivity(), aBoolean -> adapter.setAllVoteDone(aBoolean));
 		viewModel.getFullGroupData().observe(getActivity(), fullGroupData -> {
 

@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import com.esti.app.BuildConfig;
-import com.esti.app.scrumesti.feature.DataViewModel;
+import com.esti.app.scrumesti.feature.view_models.DataViewModel;
 import com.esti.app.scrumesti.feature.utils.Strings;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.analytics.FirebaseAnalytics;
@@ -16,10 +16,6 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import java.util.UUID;
 import timber.log.Timber;
-
-/**
- * Created by AhmedsMacbook on 14/02/2017.
- */
 
 public class FirebaseHelper {
 

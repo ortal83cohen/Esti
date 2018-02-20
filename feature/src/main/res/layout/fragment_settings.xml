@@ -1,0 +1,101 @@
+<android.support.constraint.ConstraintLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@color/app_background"
+ >
+
+
+  <android.support.v7.widget.AppCompatSeekBar
+    android:id="@+id/complexitySB"
+    style="@style/MySeekBar"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:elevation="20dp"
+    android:max="10"
+    android:maxHeight="11dip"
+    android:min="0"
+    android:progress="0"
+    android:progressDrawable="@drawable/custom_seekbar"
+    android:progressTint="@color/colorComplexity"
+    android:tag="complexity"
+    android:thumbTint="@color/black"
+    android:tickMark="@drawable/tickmark"
+    app:layout_constraintBottom_toTopOf="@id/claritySB"
+    app:layout_constraintLeft_toLeftOf="@id/card_background"
+    app:layout_constraintRight_toRightOf="@+id/card_background"
+    app:layout_constraintTop_toTopOf="@+id/card_background"
+    app:layout_constraintVertical_bias="0.78"/>
+
+
+
+  <com.esti.app.scrumesti.feature.views.RangeSeekBar
+    android:layout_marginTop="333dp"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    app:absoluteMinValue="0"
+    app:absoluteMaxValue="100"
+    app:singleThumb="true"
+    />
+
+  <!--android:maxHeight="16dip"-->
+
+  <!--<android.support.v7.widget.AppCompatSeekBar-->
+
+    <!--android:id="@+id/claritySB"-->
+    <!--style="@style/MySeekBar"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:elevation="20dp"-->
+    <!--android:max="4"-->
+    <!--android:maxHeight="6dip"-->
+    <!--android:min="0"-->
+    <!--android:thumbTint="@color/black"-->
+    <!--android:minHeight="4dip"-->
+    <!--android:progressDrawable="@drawable/custom_seekbar"-->
+    <!--android:progressTint="@color/colorClarity"-->
+    <!--android:tag="clarity"-->
+    <!--android:tickMark="@drawable/tickmark"-->
+    <!--app:layout_constraintBottom_toTopOf="@+id/dependencySB"-->
+    <!--app:layout_constraintLeft_toLeftOf="@id/card_background"-->
+    <!--app:layout_constraintRight_toRightOf="@+id/card_background"-->
+    <!--app:layout_constraintTop_toBottomOf="@id/complexitySB"-->
+    <!--/>-->
+
+  <!--<android.support.v7.widget.AppCompatSeekBar-->
+    <!--android:id="@+id/dependencySB"-->
+    <!--style="@style/MySeekBar"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:elevation="20dp"-->
+    <!--android:max="4"-->
+    <!--android:maxHeight="6dip"-->
+    <!--android:min="0"-->
+    <!--android:minHeight="4dip"-->
+    <!--android:progressDrawable="@drawable/custom_seekbar"-->
+    <!--android:progressTint="@color/colorDependency"-->
+    <!--android:tag="dependency"-->
+    <!--android:thumbTint="@color/black"-->
+    <!--android:tickMark="@drawable/tickmark"-->
+    <!--app:layout_constraintBottom_toTopOf="@id/nextEstiButtonWraper"-->
+    <!--app:layout_constraintHorizontal_bias="0.975"-->
+    <!--app:layout_constraintLeft_toLeftOf="@id/card_background"-->
+    <!--app:layout_constraintRight_toRightOf="@+id/card_background"-->
+    <!--app:layout_constraintTop_toBottomOf="@+id/claritySB"/>-->
+
+  <Button
+    android:id="@+id/doneButton"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rounded_button_states"
+    android:text="Done"
+    android:layout_marginLeft="60dp"
+    android:layout_marginRight="60dp"
+    android:layout_marginTop="32dp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/textInputGroupName"/>
+</android.support.constraint.ConstraintLayout>

@@ -1,4 +1,4 @@
-package com.esti.app.scrumesti.feature;
+package com.esti.app.scrumesti.feature.views;
 
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import com.esti.app.R;
+import com.esti.app.scrumesti.feature.models.User;
 import com.esti.app.scrumesti.feature.services.ScrumRules;
 import java.util.List;
 
@@ -70,31 +71,29 @@ public class ScoresRecyclerViewAdapter extends RecyclerView.Adapter<ScoresRecycl
 
 		public void bind(final User model, final OnItemClickListener listener) {
 
-			itemView.setOnClickListener(view -> {
-				flipCard(null);
-			});
-			if (model.isMe) {
+			itemView.setOnClickListener(view -> flipCard(null));
+			if (model.isMe()) {
 				name.setTypeface(Typeface.DEFAULT_BOLD);
 				name.setText("Me");
 				nameBack.setTypeface(Typeface.DEFAULT_BOLD);
 				nameBack.setText("Me");
 			} else {
 				name.setTypeface(Typeface.DEFAULT);
-				name.setText(model.name);
+				name.setText(model.getName());
 				nameBack.setTypeface(Typeface.DEFAULT);
-				nameBack.setText(model.name);
+				nameBack.setText(model.getName());
 			}
-			if (!allVoteDone && !model.isMe) {
-				total.setText((model.dependency >= 0 && model.clarity >= 0 && model.complexity >= 0) ? "✔" : "?");
-				complexityText.setText(model.complexity >= 0 ? "✔" : "?");
-				clarityText.setText(model.clarity >= 0 ? "✔" : "?");
-				dependencyText.setText(model.dependency >= 0 ? "✔" : "?");
+			if (!allVoteDone && !model.isMe()) {
+				total.setText((model.getDependency() >= 0 && model.getclarity() >= 0 && model.getComplexity() >= 0) ? "✔" : "?");
+				complexityText.setText(model.getComplexity() >= 0 ? "✔" : "?");
+				clarityText.setText(model.getclarity() >= 0 ? "✔" : "?");
+				dependencyText.setText(model.getDependency() >= 0 ? "✔" : "?");
 
 			} else {
-				total.setText(ScrumRules.scrumerSum(model.complexity, model.clarity, model.dependency).toString());
-				complexityText.setText(model.complexity < 0 ? "-" : model.complexity  + "%");
-				clarityText.setText(model.clarity < 0 ? "-" : model.clarity  + "%");
-				dependencyText.setText(model.dependency < 0 ? "-" : model.dependency + "%");
+				total.setText(ScrumRules.scrumerSum(model.getComplexity(), model.getclarity(), model.getDependency()).toString());
+				complexityText.setText(model.getComplexity() < 0 ? "-" : ScrumRules.numberToFibonacci(model.getComplexity()).toString());
+				clarityText.setText(model.getclarity() < 0 ? "-" : ScrumRules.numberToFibonacci(model.getclarity()).toString());
+				dependencyText.setText(model.getDependency() < 0 ? "-" : ScrumRules.numberToFibonacci(model.getDependency()).toString());
 
 			}
 		}

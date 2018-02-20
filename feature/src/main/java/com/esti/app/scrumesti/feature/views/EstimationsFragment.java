@@ -1,4 +1,4 @@
-package com.esti.app.scrumesti.feature;
+package com.esti.app.scrumesti.feature.views;
 
 
 import android.arch.lifecycle.ViewModelProviders;
@@ -9,6 +9,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Vibrator;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -20,15 +21,17 @@ import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import com.esti.app.R;
+import com.esti.app.scrumesti.feature.view_models.DataViewModel;
 import timber.log.Timber;
 
 public class EstimationsFragment extends Fragment {
 
+	Vibrator vibrator;
 	private static final String TAG = "EstimationsFragment";
 	private DataViewModel viewModel;
 	OnSeekBarChangeListener onSeekBarChangeListener = new OnSeekBarChangeListener() {
 		@Override public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-
+			vibrator.vibrate(1);
 		}
 
 		@Override public void onStartTrackingTouch(SeekBar seekBar) {
@@ -71,7 +74,7 @@ public class EstimationsFragment extends Fragment {
 		claritySB = view.findViewById(R.id.claritySB);
 		dependencySB = view.findViewById(R.id.dependencySB);
 		nextEstiButton = view.findViewById(R.id.nextEstiButton);
-
+		vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
 		nextEstiButton.setOnClickListener(view12 -> {
 			if (isCounting) {
 				viewModel.setNextEsti();
@@ -79,6 +82,10 @@ public class EstimationsFragment extends Fragment {
 				viewModel.askForNextEsti();
 				iClicked = true;
 			}
+		});
+
+		viewModel.getSettings().observe(this, settings -> {
+
 		});
 
 		viewModel.getNextEstiStatus().observe(this, s -> {
@@ -120,7 +127,6 @@ public class EstimationsFragment extends Fragment {
 					break;
 			}
 		});
-
 		complexitySB.setOnSeekBarChangeListener(onSeekBarChangeListener);
 		claritySB.setOnSeekBarChangeListener(onSeekBarChangeListener);
 		dependencySB.setOnSeekBarChangeListener(onSeekBarChangeListener);

@@ -1,6 +1,6 @@
 <resources>
   <string name="app_name">Scrum Esti</string>
-  <string name="action_settings">Settings</string>
+  <string name="action_settings">Team settings</string>
   <string name="action_reset">Reset</string>
   <string name="action_share">Add scrummers</string>
   <string name="action_edit">Change scrummer/team</string>
@@ -54,4 +54,8 @@
        4. Once all scrummers have filled in their story estimation measurements, Esti will present the final calculated story points for this task.<br>
         ]]> "</string>
   <string name="feedback">Give us feedback</string>
+  <string name="must_have_team">You must be belong to a team</string>
+
+  <string name="demo_min_label">Min</string>
+  <string name="demo_max_label">Max</string>
 </resources>

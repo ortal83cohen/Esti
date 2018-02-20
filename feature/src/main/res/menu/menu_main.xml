@@ -18,20 +18,21 @@
     android:orderInCategory="300"
     android:title="@string/action_share"
     app:showAsAction="never"/>
+    <item
+    android:id="@+id/action_settings"
+    android:orderInCategory="400"
+    android:title="@string/action_settings"
+    app:showAsAction="never"/>
   </group>
   <item
     android:id="@+id/action_how_to"
-    android:orderInCategory="400"
+    android:orderInCategory="500"
     android:title="@string/action_how_to"
     app:showAsAction="never"/>
   <item
     android:id="@+id/feedback"
-    android:orderInCategory="400"
+    android:orderInCategory="600"
     android:title="@string/feedback"
     app:showAsAction="never"/>
-  <!--<item-->
-    <!--android:id="@+id/action_settings"-->
-    <!--android:orderInCategory="400"-->
-    <!--android:title="@string/action_settings"-->
-    <!--app:showAsAction="never"/>-->
+
 </menu>
